@@ -1,0 +1,49 @@
+#!/usr/bin/python
+
+import sys
+
+import ply.lex 	as lex
+import ply.yacc as yacc
+
+from lexer		import *
+from parser		import *
+from structures import *
+
+def main():
+
+	# Read the arguments
+	numArgs = 1
+	while numArgs < len(sys.argv):
+		if (sys.argv[numArgs] == '-h'):
+			print 'Syntax:'
+			print '\tsimplex <name_of_file>'
+			exit()
+		else:
+			name_of_file = sys.argv[1]
+		numArgs += 1
+	
+	# Open file
+	try:
+		f = open(name_of_file,'r')
+		data = f.read()
+		f.close()
+
+		# Build parser and lexer
+		lexer_s = lex.lex()
+		parser_s = yacc.yacc()
+
+		# Execute parser
+		lexer_s.input(data)
+		result = parser_s.parse(data)
+		
+		# Read the AST information
+		print "Name of variables:"
+		for variable in result.declarations:
+			print "\t" + variable.id
+
+		print "It works!"
+	except IOError :
+		print "Could not open the file"
+
+if  __name__ =='__main__':
+    main()

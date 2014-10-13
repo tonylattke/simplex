@@ -108,6 +108,6 @@ value:
 %%
 
 int yyerror(const char *s) {
-  cout << "Error parser! Message: " << s << endl;
+  cout << "Syntax error:\n" << s << endl;
   return -1;
 }

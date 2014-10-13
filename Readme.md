@@ -7,7 +7,6 @@ value or not.
 
 Syntax sample:
 
-::
 
     program {   
         str foo;

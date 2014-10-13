@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
     std::list<Declaration*>::iterator end = tree->getDeclarations()->end();
     
     while (iterador != end){
-      std::cout << "    " << (*iterador)->getId() << std::endl;
+      std::cout << "\t" << (*iterador)->getId() << std::endl;
 
       iterador++;
     }
